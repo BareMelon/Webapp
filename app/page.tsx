@@ -1,5 +1,6 @@
 "use client";
 
+import type { MotionProps } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -20,7 +21,7 @@ const navLinks = [
   { label: "Home", href: "#hero" },
   { label: "Features", href: "#features" },
   { label: "Dashboard", href: "#dashboard" },
-  { label: "Shop", href: "/shop" },
+  { label: "Shop", href: "#shop" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -136,16 +137,18 @@ const roadmap = [
 ];
 
 const resources = [
-  { label: "Support", value: "support@stellarforge.gg" },
-  { label: "Terms", value: "View Terms" },
-  { label: "Privacy", value: "Privacy Policy" },
+  { label: "Support", value: "support@stellarforge.gg", href: "mailto:support@stellarforge.gg" },
+  { label: "Terms", value: "View Terms", href: "#contact" },
+  { label: "Privacy", value: "Privacy Policy", href: "#contact" },
 ];
 
-const sectionMotion = {
+const easingCurve = [0.21, 0.47, 0.32, 0.98] as const;
+
+const sectionMotion: MotionProps = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] },
+  transition: { duration: 0.6, ease: easingCurve },
 };
 
 const SITE_NAME = "StellarForge";
@@ -156,14 +159,14 @@ export default function Home() {
       <header className="sticky top-0 z-40 border-b border-white/10 bg-[rgba(5,6,8,0.78)] backdrop-blur">
         <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-6">
           <Link href="#hero" className="flex items-center gap-3">
-            <Image
+        <Image
               src="/placeholder-logo.svg"
               alt={`${SITE_NAME} logo`}
               width={40}
               height={40}
               className="h-10 w-10"
-              priority
-            />
+          priority
+        />
             <span className="text-lg font-semibold tracking-wide">{SITE_NAME}</span>
           </Link>
           <nav className="hidden items-center gap-8 text-sm font-medium text-white/75 md:flex">
@@ -238,11 +241,11 @@ export default function Home() {
             className="relative w-full max-w-md rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-[0_30px_80px_rgba(10,12,30,0.55)] backdrop-blur"
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            transition={{ duration: 0.7, delay: 0.15, ease: easingCurve }}
           >
             <div className="absolute inset-x-6 top-6 h-44 rounded-[24px] bg-[radial-gradient(circle_at_10%_10%,rgba(92,108,253,0.4),transparent_55%),radial-gradient(circle_at_90%_20%,rgba(168,85,247,0.35),transparent_40%)] blur-3xl" />
             <div className="relative z-10 space-y-6">
-              <Image
+            <Image
                 src="/placeholder-hero.svg"
                 alt="Dashboard preview"
                 width={512}
@@ -301,7 +304,7 @@ export default function Home() {
                   key={feature.title}
                   className="rounded-3xl border border-white/10 bg-white/5 p-6 text-left shadow-[0_18px_45px_rgba(12,14,30,0.45)] backdrop-blur transition duration-200 hover:border-white/25"
                   whileHover={{ y: -6, scale: 1.02 }}
-                  transition={{ duration: 0.25, ease: [0.17, 0.67, 0.4, 0.88] }}
+                  transition={{ duration: 0.25, ease: easingCurve }}
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(92,108,253,0.18)] text-[var(--accent-tertiary)]">
                     <Icon className="h-5 w-5" />
@@ -361,7 +364,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+              transition={{ duration: 0.6, delay: 0.15, ease: easingCurve }}
             >
               <div className="rounded-2xl border border-white/10 bg-white/10 p-5">
                 <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/60">
@@ -390,7 +393,7 @@ export default function Home() {
                 <div className="text-xs uppercase tracking-[0.3em] text-white/60">Alerts</div>
                 <div className="mt-3 space-y-3">
                   <div className="rounded-xl border border-white/10 bg-black/30 p-3">
-                    Quest "Crystal Rush" completes in 2h. Reward reminder sent.
+                    Quest &quot;Crystal Rush&quot; completes in 2h. Reward reminder sent.
                   </div>
                   <div className="rounded-xl border border-white/10 bg-black/30 p-3">
                     Shop restock scheduled for 6PM. Roles will update automatically.
@@ -430,13 +433,13 @@ export default function Home() {
                 key={card.title}
                 className="rounded-3xl border border-white/10 bg-white/5 p-6 text-left shadow-[0_18px_45px_rgba(12,14,30,0.45)] backdrop-blur"
                 whileHover={{ y: -6, scale: 1.02 }}
-                transition={{ duration: 0.25, ease: [0.17, 0.67, 0.4, 0.88] }}
+                transition={{ duration: 0.25, ease: easingCurve }}
               >
                 <div className="text-sm uppercase tracking-[0.3em] text-white/60">Snapshot</div>
                 <h3 className="mt-3 text-lg font-semibold text-white">{card.title}</h3>
                 <p className="mt-3 text-sm text-white/70">{card.body}</p>
                 <Link
-                  href="/dashboard"
+                  href="#dashboard"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-tertiary)] hover:text-white"
                 >
                   View preview
@@ -467,7 +470,7 @@ export default function Home() {
                 key={product.title}
                 className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_45px_rgba(12,14,30,0.45)] backdrop-blur"
                 whileHover={{ y: -6, scale: 1.02 }}
-                transition={{ duration: 0.25, ease: [0.17, 0.67, 0.4, 0.88] }}
+                transition={{ duration: 0.25, ease: easingCurve }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(168,85,247,0.2)] text-[var(--accent-secondary)]">
                   <ShoppingBag className="h-5 w-5" />
@@ -477,7 +480,7 @@ export default function Home() {
                 </p>
                 <div className="mt-auto pt-6 text-lg font-semibold text-white">{product.price}</div>
                 <Link
-                  href="/shop"
+                  href="#shop"
                   className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-tertiary)] hover:text-white"
                 >
                   View details
@@ -489,7 +492,7 @@ export default function Home() {
           <div className="mt-12 flex flex-col items-center gap-3 text-sm text-white/70">
             <span>Secure checkout powered by Stripe. Instant Discord role delivery.</span>
             <Link
-              href="/shop"
+              href="#shop"
               className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-2.5 font-semibold text-white transition duration-200 hover:border-white/40"
             >
               Enter the shop
@@ -523,7 +526,7 @@ export default function Home() {
                   href="#contact"
                   className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-tertiary)] hover:text-white"
                 >
-                  Get roadmap updates
+                  Stay informed
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -566,7 +569,7 @@ export default function Home() {
                 key={item.name}
                 className="rounded-3xl border border-white/10 bg-white/5 p-6 text-left shadow-[0_18px_45px_rgba(12,14,30,0.45)] backdrop-blur"
                 whileHover={{ y: -6, scale: 1.02 }}
-                transition={{ duration: 0.25, ease: [0.17, 0.67, 0.4, 0.88] }}
+                transition={{ duration: 0.25, ease: easingCurve }}
               >
                 <p className="text-sm text-white/80">“{item.quote}”</p>
                 <div className="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">{item.role}</div>
@@ -591,19 +594,19 @@ export default function Home() {
                 href="mailto:hello@stellarforge.gg"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition duration-200 hover:bg-slate-200"
               >
-                Email the team
+                Message the team
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="https://discord.com/oauth2/authorize"
-                target="_blank"
-                rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white/90 transition duration-200 hover:border-white/70 hover:text-white"
-              >
+          >
                 Join the Discord
               </Link>
             </div>
-          </div>
+        </div>
         </motion.section>
       </main>
 
@@ -617,7 +620,7 @@ export default function Home() {
               </p>
               <Link
                 href="https://github.com/BareMelon"
-                target="_blank"
+          target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 transition duration-200 hover:text-white"
               >
@@ -632,7 +635,7 @@ export default function Home() {
               {resources.map((item) => (
                 <Link
                   key={item.label}
-                  href={item.label === "Support" ? "mailto:" + item.value : "/legal"}
+                  href={item.href}
                   className="flex justify-between hover:text-white"
                 >
                   <span>{item.label}</span>
