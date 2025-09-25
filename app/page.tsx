@@ -111,7 +111,7 @@ function Particles() {
       positions[i * 3 + 2] = (Math.random() - 0.5) * 16;
       sizes[i] = Math.random() * 0.5 + 0.2;
     }
-    return { positions, sizes, count };
+    return { positions, sizes };
   }, []);
 
   const shader = useMemo(
@@ -159,8 +159,8 @@ function Particles() {
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={points.count} array={points.positions} itemSize={3} />
-        <bufferAttribute attach="attributes-aSize" count={points.sizes.length} array={points.sizes} itemSize={1} />
+        <bufferAttribute attach="attributes-position" args={[points.positions, 3]} />
+        <bufferAttribute attach="attributes-aSize" args={[points.sizes, 1]} />
       </bufferGeometry>
       <primitive object={shader} attach="material" />
     </points>
