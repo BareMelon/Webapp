@@ -1,63 +1,32 @@
-@import "tailwindcss";
-
 :root {
+  color-scheme: dark;
   --background: #050608;
-  --background-soft: #080a16;
   --foreground: #f5f6ff;
-  --foreground-muted: rgba(245, 246, 255, 0.72);
   --accent-primary: #5c6cfd;
   --accent-secondary: #a855f7;
   --accent-tertiary: #31c6ff;
-  --surface: rgba(12, 16, 34, 0.72);
-  --surface-strong: rgba(16, 20, 40, 0.9);
-  --border-color: rgba(255, 255, 255, 0.08);
-  --glass: rgba(255, 255, 255, 0.04);
-  --shadow-soft: 0 18px 60px rgba(24, 28, 60, 0.45);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--foreground-muted);
-  --color-surface: var(--surface);
-  --color-surface-strong: var(--surface-strong);
-  --color-accent: var(--accent-primary);
-  --color-accent-secondary: var(--accent-secondary);
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
+  --glass: rgba(255, 255, 255, 0.08);
+  --shadow-strong: 0 40px 120px rgba(8, 12, 32, 0.78);
 }
 
 * {
   box-sizing: border-box;
 }
 
+html,
 body {
-  background-color: var(--background-soft);
-  color: var(--foreground);
-  font-family: var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  min-height: 100dvh;
   margin: 0;
-  position: relative;
-  overflow-x: hidden;
+  padding: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #000509;
+  color: var(--foreground);
+  min-height: 100%;
+  overflow: hidden;
 }
 
-body::before {
-  content: "";
+body {
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(92, 108, 253, 0.25), transparent 55%),
-    radial-gradient(circle at 80% 10%, rgba(168, 85, 247, 0.2), transparent 40%),
-    radial-gradient(circle at 50% 80%, rgba(49, 198, 255, 0.2), transparent 45%);
-  z-index: -2;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(5, 6, 8, 0.75) 0%, rgba(5, 6, 8, 0.92) 40%, rgba(5, 6, 8, 1) 100%);
-  z-index: -1;
 }
 
 a {
@@ -66,6 +35,7 @@ a {
 }
 
 ::selection {
-  background: rgba(92, 108, 253, 0.45);
-  color: var(--foreground);
+  background: rgba(92, 108, 253, 0.4);
+  color: #fff;
 }
+
