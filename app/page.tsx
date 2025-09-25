@@ -517,7 +517,7 @@ function Scene({ onProgressChange }: { onProgressChange: (value: number) => void
 }
 
 export default function Page() {
-  const overlayHandlerRef = useRef<(value: number) => void>();
+  const overlayHandlerRef = useRef<((value: number) => void) | undefined>(undefined);
   const registerOverlayHandler = useCallback((handler?: (value: number) => void) => {
     overlayHandlerRef.current = handler;
   }, []);
